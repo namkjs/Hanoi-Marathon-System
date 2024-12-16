@@ -1,21 +1,7 @@
-/* Background chung */
-.page-background {
-    background-image: url('../img/poster.jpg');
-    /* Ảnh nền */
-    background-size: cover;
-    /* Phủ kín màn hình */
-    background-repeat: no-repeat;
-    /* Không lặp lại */
-    background-position: center;
-    /* Canh giữa */
-    height: 100vh;
-    /* Chiều cao 100% viewport */
-    position: relative;
-}
 
 /* Overlay mờ */
 .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
     /* Lớp mờ 50% */
     position: absolute;
     top: 0;
