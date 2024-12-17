@@ -21,11 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ./index.php");
         } else {
             $_SESSION['error'] = "Invalid username or password!";
-            header("Location: ./login.php"); // Chuyển hướng trở lại trang đăng nhập
+            header("Location: ./login.php"); 
         }
     } else {
         $_SESSION['error'] = "Invalid username or password!";
-        header("Location: ./login.php"); // Chuyển hướng trở lại trang đăng nhập
+        header("Location: ./login.php");
     }
 }
 ?>

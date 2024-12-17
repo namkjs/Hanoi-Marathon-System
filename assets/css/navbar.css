@@ -1,62 +1,98 @@
-/* Navbar chung */
-.navbar {
-    background: linear-gradient(to right, #444, #222); /* Gradient màu xám đậm */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Viền dưới mờ */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
-    z-index: 10; /* Đảm bảo navbar luôn ở trên cùng */
-}
 
-/* Navbar brand */
+
+/* Navbar Brand (Logo) */
 .navbar-brand {
     font-size: 28px;
     font-weight: bold;
-    color: #f8f9fa !important; /* Màu trắng nhạt */
-    letter-spacing: 1px; /* Khoảng cách chữ */
-    text-transform: uppercase; /* Chuyển thành chữ in hoa */
-    transition: color 0.3s ease;
+    color: #ffffff !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s, transform 0.3s ease-in-out;
 }
 
-.navbar-brand:hover {
-    color: #ffc107 !important; /* Màu vàng khi hover */
+/* Logo trong navbar */
+.logo-img {
+    height: 50px; /* Tăng chiều cao logo */
+    width: auto; /* Giữ tỉ lệ logo */
+    transition: transform 0.3s ease-in-out; /* Hiệu ứng hover */
 }
 
-/* Navbar links */
+.navbar {
+    background: linear-gradient(135deg, #333333, #444444);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 8px 0; /* Giảm padding dọc thanh nav */
+    z-index: 10;
+}
+
+/* Căn chỉnh các phần tử */
+.navbar-brand {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f8f9fa !important;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
 .navbar-nav .nav-link {
-    color: #f8f9fa; /* Màu trắng nhạt */
+    color: #f1f1f1;
     font-size: 18px;
-    margin-right: 15px; /* Khoảng cách giữa các link */
-    transition: color 0.3s ease, transform 0.2s ease;
+    transition: color 0.3s;
+    margin-right: 15px;
 }
 
 .navbar-nav .nav-link:hover {
-    color: #ffc107; /* Màu vàng khi hover */
-    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+    color: #ffc107;
+    transform: translateY(-2px);
 }
 
-/* Nút Sign In và Sign Up */
-.btn-warning {
+/* Các nút Sign in và Sign up */
+.btn-custom {
     background-color: #ffc107;
-    color: #000; /* Màu chữ đen */
+    color: #333;
     font-weight: bold;
-    border: none;
-    border-radius: 25px; /* Bo tròn nút */
-    padding: 8px 20px;
-    transition: all 0.3s ease-in-out;
+    border-radius: 20px;
+    padding: 6px 15px;
+    transition: all 0.3s ease;
 }
 
-.btn-warning:hover {
-    background-color: #e0a800; /* Màu vàng đậm hơn khi hover */
-    transform: translateY(-2px); /* Di chuyển nút lên nhẹ khi hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.btn-custom:hover {
+    background-color: #e0a800;
+    color: #fff;
+    transform: translateY(-2px);
 }
 
-/* Responsive Toggle Button */
-.navbar-toggler {
-    border: none;
-    outline: none;
-    background-color: #ffc107;
+/* Đảm bảo các thành phần nằm đều */
+.container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-.navbar-toggler-icon {
-    filter: invert(1); /* Biến màu icon thành trắng */
+@media (max-width: 992px) {
+    .navbar-nav {
+        text-align: center;
+    }
+}
+
+/* Tùy chỉnh cho chế độ Mobile */
+@media (max-width: 992px) {
+    .navbar-nav .nav-link {
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .btn-custom {
+        display: block;
+        margin: 5px auto;
+    }
+}
+
+
+.navbar-brand:hover img {
+    transform: scale(1.5); /* Phóng to logo nhẹ khi hover */
+}
+.navbar-brand:hover {
+    color: #ffc107 !important; /* Đổi màu vàng khi hover */
+    transform: scale(1.1); /* Phóng to nhẹ */
 }

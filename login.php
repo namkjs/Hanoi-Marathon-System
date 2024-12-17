@@ -6,42 +6,40 @@
     <title>User Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/login.css">
-
 </head>
 <body class="login-page">
     <?php include('includes/navbar.php'); ?>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card mt-5">
-                    <div class="card-body">
-                        <h2 class="card-title text-center">User Login</h2>
-                        <?php
-                        session_start();
-                        if (isset($_SESSION['error'])) {
-                            echo "<p class='alert alert-danger' role='alert'>".$_SESSION['error']."</p>";
-                            unset($_SESSION['error']);
-                        }
-                        ?>
-                        <form action="login_process.php" method="post">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username:</label>
-                                <input type="text" id="username" name="username" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password:</label>
-                                <input type="password" id="password" name="password" class="form-control" required>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-block">Login</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card login-card p-4">
+            <div class="text-center mb-3">
+                <h2>Welcome Back</h2>
+                <p class="text-muted">Login to your account</p>
             </div>
+
+            <!-- Hiển thị thông báo lỗi -->
+            <?php
+            session_start();
+            if (isset($_SESSION['error'])) {
+                echo "<div class='alert alert-danger text-center' role='alert'>".$_SESSION['error']."</div>";
+                unset($_SESSION['error']); // Xóa session sau khi hiển thị
+            }
+            ?>
+
+            <!-- Form đăng nhập -->
+            <form action="login_process.php" method="post">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    <label for="password">Password</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
-
 </html>

@@ -6,41 +6,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hanoi International Marathon</title>
   <style>
-    .navbar {
-  background-color: #333;
+
+
+/* Overlay mờ */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Navbar làm mờ */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.6); /* Màu đen trong suốt */
+    backdrop-filter: blur(10px); /* Hiệu ứng làm mờ nền */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 2;
+}
+
+/* Logo trong navbar */
+.logo-img {
+    height: 50px; /* Điều chỉnh kích thước logo */
+    width: auto;
+    transition: transform 0.3s ease-in-out;
 }
 
 .navbar-brand {
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease, transform 0.3s ease-in-out;
 }
 
+.navbar-brand:hover {
+    color: #ffc107; /* Đổi màu vàng khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+.navbar-brand:hover .logo-img {
+    transform: scale(1.5); /* Logo cũng phóng to nhẹ */
+}
+
+/* Navbar Links */
 .navbar-nav .nav-link {
-  color: #fff;
+    color: #f1f1f1;
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover {
-  color: #007bff;
+    color: #ffc107;
+    transform: translateY(-2px); /* Nhảy nhẹ */
 }
 
-.search {
-  float: right;
-  margin-right: 20px;
+/* Nút Sign in và Sign up */
+.btn-warning {
+    background-color: #ffc107;
+    color: #333;
+    font-weight: bold;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    padding: 6px 15px;
 }
 
-.search input {
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size:
+.btn-warning:hover {
+    background-color: #e0a800;
+    color: #fff;
+    transform: translateY(-2px); /* Nhảy nhẹ */
 }
+
+/* Responsive chỉnh sửa */
+@media (max-width: 992px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .btn-warning {
+        display: block;
+        margin: 5px auto;
+    }
+}
+
     </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/final-exam">Hanoi International Marathon</a>

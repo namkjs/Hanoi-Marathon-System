@@ -14,7 +14,7 @@
 <body>
 
   <!-- Navbar lấy từ loggedin.php -->
-  <?php include('./includes/header.php'); ?>
+  <?php include('./includes/navbar.php'); ?>
 
   <!-- Nội dung của trang "About Us" -->
   <div class="container">

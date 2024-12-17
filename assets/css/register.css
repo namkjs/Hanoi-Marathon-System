@@ -1,0 +1,78 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f6f9fc, #c2e9fb);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Wrapper để căn giữa nội dung */
+.register-page .container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card Styling */
+.register-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+    padding: 30px;
+}
+
+.register-card h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.register-card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form-control {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #4a90e2;
+    box-shadow: none;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #4a90e2;
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #357abd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

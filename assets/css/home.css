@@ -24,15 +24,9 @@ h1 {
     font-size: 48px;
     font-weight: bold;
     color: #ffffff;
-    /* Màu trắng */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    /* Đổ bóng giúp chữ rõ ràng */
     padding: 15px 25px;
-    /* Khoảng cách bên trong */
     background-color: rgba(0, 0, 0, 0.6);
-    /* Nền đen mờ để tăng tương phản */
     display: inline-block;
-    /* Để nền vừa chữ */
     border-radius: 10px;
-    /* Bo tròn góc */
 }

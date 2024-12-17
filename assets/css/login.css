@@ -1,58 +1,59 @@
-/* Overlay và background mặc định */
-.overlay {
-    background-color: rgba(0, 0, 0, 0.4); /* Lớp mờ */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+/* General Styling */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f6f9fc, #c2e9fb);
+    height: 100vh; /* Đảm bảo body chiếm toàn bộ chiều cao viewport */
+    display: flex;
+    flex-direction: column; /* Dùng flexbox */
 }
 
-/* Navbar mặc định (màu xám) */
+/* Wrapper để chứa toàn bộ nội dung */
+.page-container {
+    flex: 1; /* Giữ nội dung ở giữa theo chiều dọc */
+    display: flex;
+    justify-content: center; /* Căn giữa ngang */
+    align-items: center; /* Căn giữa dọc */
+}
+
+/* Navbar fix */
 .navbar {
-    background-color: #444; /* Màu xám đậm */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 2;
+    margin: 0;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10;
 }
 
-.navbar-brand {
-    font-size: 26px;
-    font-weight: bold;
-    color: #ffffff;
+/* Card Styling */
+.login-card {
+    width: 100%;
+    max-width: 400px; /* Giới hạn chiều rộng */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Đổ bóng đẹp */
+    animation: fadeIn 0.8s ease-in-out;
 }
 
-.navbar-nav .nav-link {
-    color: #f1f1f1;
-    transition: color 0.3s;
+/* Form Styling */
+.form-control {
+    border: none;
+    border-bottom: 2px solid #ddd;
+    border-radius: 0;
+    transition: border-color 0.3s;
 }
 
-.navbar-nav .nav-link:hover {
-    color: #f39c12; /* Màu vàng khi hover */
+.form-control:focus {
+    border-color: #56ccf2;
+    box-shadow: none;
 }
 
-/* Loại bỏ overlay và background trên trang login */
-body.login-page .overlay,
-body.login-page .background {
-    display: none; /* Ẩn overlay và background */
-}
-
-/* Tùy chỉnh body trang login */
-body.login-page {
-    background-color: #e9ecef; /* Nền sáng xám nhạt */
-}
-
-/* Tùy chỉnh card login */
-body.login-page .container {
-    margin-top: 80px; /* Đẩy container xuống dưới một chút */
-}
-
-body.login-page .card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-body.login-page h2 {
-    font-weight: bold;
-    color: #333; /* Màu chữ đậm */
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

@@ -13,7 +13,8 @@ session_start();
 
 <body>
 <?php if (!isset($_SESSION['username'])) {
-    header("Location: /final-exam/login.php"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+    $_SESSION['error'] = "You must log in to view the competitions."; // Thông báo lỗi
+    header("Location: /final-exam/login.php"); 
     exit();
 } ?>
 
@@ -23,7 +24,7 @@ session_start();
         echo "<div class='alert alert-success' role='alert'>";
         echo $_SESSION['success_message'];
         echo "</div>";
-        unset($_SESSION['success_message']); // Clear success message from session
+        unset($_SESSION['success_message']);
       }
 
     if (isset($_SESSION['error_message'])) {
