@@ -35,82 +35,131 @@ include('../includes/loggedin.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Competitions</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap 5 -->
+    <!-- Font Awesome -->
+    <style>
+        body {
+            background: linear-gradient(to bottom, #f0f4f8, #ffffff);
+            font-family: 'Poppins', sans-serif;
+        }
+        .section-title {
+            font-weight: 600;
+            color: #333;
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .table-custom {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: white;
+        }
+
+        .table-custom thead {
+            background: linear-gradient(to right, #4a90e2, #56ccf2);
+            color: white;
+        }
+
+        .table-custom tbody tr:hover {
+            background-color: #f1f9ff;
+            cursor: pointer;
+        }
+
+        .btn-danger, .btn-primary {
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger:hover, .btn-primary:hover {
+            transform: scale(1.05);
+        }
+
+        .highlight-row {
+            background-color: #f0f4ff;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container mt-4">
-    <?php if ($result && $result->num_rows > 0) : ?>
-        <h2>List of Competitions</h2>
+<div class="container mt-5">
+    <h2 class="section-title text-center">List of Competitions</h2>
 
-        <?php
-        // Get current date for comparison
-        $currentDate = date('Y-m-d');
+    <!-- Upcoming Competitions -->
+    <div class="mb-4">
+        <h3 class="section-title">Upcoming Competitions</h3>
+        <div class="table-responsive">
+            <table class="table table-custom table-hover text-center align-middle">
+                <thead>
+                    <tr>
+                        <th>Competition ID</th>
+                        <th>Competition Name</th>
+                        <th>Date</th>
+                        <th>Cancel Registration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $currentDate = date('Y-m-d');
+                    $result->data_seek(0); // Reset pointer
+                    while ($row = $result->fetch_assoc()) :
+                        if ($row['Date'] >= $currentDate) : ?>
+                            <tr>
+                                <td><?= $row['MarathonID'] ?></td>
+                                <td><?= $row['RaceName'] ?></td>
+                                <td><?= $row['Date'] ?></td>
+                                <td>
+                                    <a href="cancel_registration.php?entry_no=<?= $row['EntryNO'] ?>&marathon_id=<?= $row['MarathonID'] ?>" 
+                                       class="btn btn-danger btn-sm">
+                                       <i class="fas fa-times-circle"></i> Cancel
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endif;
+                    endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        // Table for competitions after today's date
-        echo "<h3>Upcoming Competitions</h3>";
-        echo "<table class='table table-bordered table-striped'>";
-        echo "<thead>
-                <tr>
-                    <th>Competition ID</th>
-                    <th>Competition Name</th>
-                    <th>Date</th>
-                    <th>Cancel Registration</th>
-                </tr>
-              </thead>";
-        echo "<tbody>";
-
-        while ($row = $result->fetch_assoc()) {
-            if ($row['Date'] >= $currentDate) {
-                echo "<tr>";
-                echo "<td>" . $row['MarathonID'] . "</td>";
-                echo "<td>" . $row['RaceName'] . "</td>";
-                echo "<td>" . $row['Date'] . "</td>";
-                echo "<td><a href='cancel_registration.php?entry_no=" . $row['EntryNO'] . "&marathon_id=" . $row['MarathonID'] . "' class='btn btn-danger'>Cancel</a></td>";
-                echo "</tr>";
-            }
-        }
-
-        echo "</tbody>";
-        echo "</table>";
-
-        // Table for competitions before today's date
-        echo "<h3>Past Competitions</h3>";
-        echo "<table class='table table-bordered table-striped'>";
-        echo "<thead>
-                <tr>
-                    <th>Competition ID</th>
-                    <th>Competition Name</th>
-                    <th>Date</th>
-                    <th>View Competition</th>
-                </tr>
-              </thead>";
-        echo "<tbody>";
-
-        // Reset the data pointer in the result set to display competitions before today
-        $result->data_seek(0);
-
-        while ($row = $result->fetch_assoc()) {
-            if ($row['Date'] < $currentDate) {
-                echo "<tr>";
-                echo "<td>" . $row['MarathonID'] . "</td>";
-                echo "<td>" . $row['RaceName'] . "</td>";
-                echo "<td>" . $row['Date'] . "</td>";
-                echo "<td><a href='view_competition.php?entry_no=" . $row['EntryNO'] . "&marathon_id=" . $row['MarathonID'] . "' class='btn btn-primary'>View</a></td>";
-                echo "</tr>";
-            }
-        }
-
-        echo "</tbody>";
-        echo "</table>";
-        ?>
-    <?php else : ?>
-        <p>No competitions found for this user.</p>
-    <?php endif; ?>
+    <!-- Past Competitions -->
+    <div class="mb-4">
+        <h3 class="section-title">Past Competitions</h3>
+        <div class="table-responsive">
+            <table class="table table-custom table-hover text-center align-middle">
+                <thead>
+                    <tr>
+                        <th>Competition ID</th>
+                        <th>Competition Name</th>
+                        <th>Date</th>
+                        <th>View Competition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $result->data_seek(0); // Reset pointer
+                    while ($row = $result->fetch_assoc()) :
+                        if ($row['Date'] < $currentDate) : ?>
+                            <tr>
+                                <td><?= $row['MarathonID'] ?></td>
+                                <td><?= $row['RaceName'] ?></td>
+                                <td><?= $row['Date'] ?></td>
+                                <td>
+                                    <a href="view_competition.php?entry_no=<?= $row['EntryNO'] ?>&marathon_id=<?= $row['MarathonID'] ?>" 
+                                       class="btn btn-primary btn-sm">
+                                       <i class="fas fa-eye"></i> View
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endif;
+                    endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
-<!-- Bootstrap JS (optional) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Bootstrap JS -->
 </body>
 </html>

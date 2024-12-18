@@ -44,63 +44,175 @@ AND participate.MarathonID = $marathonID";
 $result = $conn->query($query);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Competition Details</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
 
 <?php
 // Display competition details using Bootstrap classes
 if ($result && $result->num_rows > 0) {
     $row = $result->fetch_assoc();
     ?>
-    <div class="container mt-5">
-        <h2>Competition Information</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <p><b>Competition ID:</b> <?= $row['MarathonID'] ?></p>
-                <p><b>Competition Name:</b> <?= $row['RaceName'] ?></p>
-                <p><b>Date:</b> <?= $row['Date'] ?></p>
-            </div>
-        </div>
-
-        <h2>User Information</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <p><b>Name:</b> <?= $row['Name'] ?></p>
-                <p><b>Nationality:</b> <?= $row['Nationality'] ?></p>
-                <p><b>Sex:</b> <?= $row['Sex'] ?></p>
-                <p><b>Age:</b> <?= $row['Age'] ?></p>
-                <p><b>Email:</b> <?= $row['Email'] ?></p>
-                <p><b>Phone:</b> <?= $row['Phone'] ?></p>
-                <p><b>Address:</b> <?= $row['Address'] ?></p>
-            </div>
-        </div>
-
-        <h2>Participation Information</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <p><b>Entry Number:</b> <?= $row['EntryNO'] ?></p>
-                <p><b>Hotel:</b> <?= $row['Hotel'] ?></p>
-                <p><b>Time Record:</b> <?= $row['TimeRecord'] ?></p>
-                <p><b>Standings:</b> <?= $row['Standings'] ?></p>
-            </div>
-        </div>
-        <!-- Implement cancellation button using Bootstrap if desired -->
-        <!-- ... -->
-    </div>
     <?php
 } else {
     echo "<div class='container mt-5'>No information found for this competition.</div>";
 }
 ?>
 
-<!-- Bootstrap JS (Optional, for some components) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Competition Details</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .section-title {
+      font-weight: bold;
+      color: #333;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .card-custom {
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      background-color: #fff;
+      overflow: hidden;
+    }
+
+    .card-custom:hover {
+      transform: translateY(-10px);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .gradient-custom {
+      background: linear-gradient(to right, #4a90e2, #56ccf2);
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .gradient-custom h2 {
+      margin: 0;
+    }
+
+    .info-block h6 {
+      font-weight: bold;
+      color: #4a90e2;
+    }
+
+    .info-block p {
+      color: #333;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Container -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <!-- Competition Information -->
+    <div class="col-md-10 mb-4">
+      <div class="card card-custom">
+        <div class="gradient-custom">
+          <h2>Competition Information</h2>
+        </div>
+        <div class="card-body">
+          <div class="row info-block">
+            <div class="col-md-4">
+              <h6>Competition ID</h6>
+              <p><?= $row['MarathonID'] ?></p>
+            </div>
+            <div class="col-md-4">
+              <h6>Competition Name</h6>
+              <p><?= $row['RaceName'] ?></p>
+            </div>
+            <div class="col-md-4">
+              <h6>Date</h6>
+              <p><?= $row['Date'] ?></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Information -->
+    <div class="col-md-10 mb-4">
+      <div class="card card-custom">
+        <div class="gradient-custom">
+          <h2>User Information</h2>
+        </div>
+        <div class="card-body">
+          <div class="row info-block">
+            <div class="col-md-4">
+              <h6>Name</h6>
+              <p><?= $row['Name'] ?></p>
+            </div>
+            <div class="col-md-4">
+              <h6>Email</h6>
+              <p><?= $row['Email'] ?></p>
+            </div>
+            <div class="col-md-4">
+              <h6>Phone</h6>
+              <p><?= $row['Phone'] ?></p>
+            </div>
+            <div class="col-md-4">
+              <h6>Gender</h6>
+              <p><?= $row['Sex'] ?></p>
+            </div>
+            <div class="col-md-4">
+              <h6>Age</h6>
+              <p><?= $row['Age'] ?></p>
+            </div>
+            <div class="col-md-4">
+              <h6>Address</h6>
+              <p><?= $row['Address'] ?></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Participation Information -->
+    <div class="col-md-10">
+      <div class="card card-custom">
+        <div class="gradient-custom">
+          <h2>Participation Information</h2>
+        </div>
+        <div class="card-body">
+          <div class="row info-block">
+            <div class="col-md-4">
+              <h6>Entry Number</h6>
+              <p><?= $row['EntryNO'] ?></p>
+            </div>
+            <div class="col-md-4">
+              <h6>Hotel</h6>
+              <p><?= $row['Hotel'] ?></p>
+            </div>
+            <div class="col-md-4">
+              <h6>Time Record</h6>
+              <p><?= $row['TimeRecord'] ?></p>
+            </div>
+            <div class="col-md-4">
+              <h6>Standings</h6>
+              <p><?= $row['Standings'] ?></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

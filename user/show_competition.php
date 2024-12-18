@@ -8,7 +8,7 @@ session_start();
 
 <head>
     <title>List of Competitions</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/showcompetition.css">
 </head>
 
 <body>
@@ -34,7 +34,6 @@ session_start();
         unset($_SESSION['error_message']); // Clear error message from session
       }?>
 
-    <h1>List of Competitions</h1>
 
     <div class="competition-list">
         <?php include('showcompetition.php'); ?>

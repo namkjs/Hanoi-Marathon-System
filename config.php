@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost"; // Change to your MySQL server address
 $username = "root"; // Change to your MySQL username
-$password = ""; // Change to your MySQL password
+$password = "123456"; // Change to your MySQL password
 $database = "final_exam"; // Change to your database name
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $database, 3308);
