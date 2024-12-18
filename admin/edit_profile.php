@@ -8,13 +8,13 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-
 $username = $_SESSION['username'];
 $id = "SELECT * FROM user WHERE username = '$username'";
 $result = $conn->query($id);
 $row = $result->fetch_assoc();
 $userID = $row['UserID'];
-// Lấy thông tin người dùng từ cơ sở dữ liệu
+
+// Lấy thông tin người dùng từ bảng participant
 $query = "SELECT * FROM participant WHERE UserID= '$userID'";
 $result = $conn->query($query);
 
@@ -30,70 +30,116 @@ if ($result && $result->num_rows > 0) {
     $email = $row['Email'];
     $phone = $row['Phone'];
 } else {
-    // Hiển thị form để người dùng nhập thông tin mới
-    $name = '';
-    $nationality = '';
-    $sex = '';
-    $age = '';
-    $marathon_best_record = '';
-    $passport_no = '';
-    $address = '';
-    $email = '';
-    $phone = '';
-    // Khai báo các trường thông tin khác với giá trị rỗng
+    $name = $nationality = $sex = $age = $marathon_best_record = $passport_no = $address = $email = $phone = '';
 }
-
-// Hiển thị form chỉnh sửa thông tin cá nhân
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 30px;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #4a90e2;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #357abd;
+            transform: scale(1.02);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"], input[type="tel"], select {
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <?php include('../includes/loggedin_admin.php'); ?>
 
-    <h1>Edit Profile</h1>
+    <div class="container">
+        <h1>Edit Profile</h1>
+        <form action="update_profile.php" method="post" novalidate>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" value="<?php echo htmlspecialchars($name); ?>" required>
+            </div>
 
-    <form action="update_profile.php" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="<?php echo $name; ?>"><br>
+            <div class="mb-3">
+                <label for="nationality" class="form-label">Nationality:</label>
+                <input type="text" id="nationality" name="nationality" class="form-control" value="<?php echo htmlspecialchars($nationality); ?>" required>
+            </div>
 
-        <label for="nationality">Nationality:</label>
-        <input type="text" id="nationality" name="nationality" value="<?php echo $nationality; ?>"><br>
+            <div class="mb-3">
+                <label for="sex" class="form-label">Gender:</label>
+                <select id="sex" name="sex" class="form-select">
+                    <option value="Male" <?php if ($sex == 'Male') echo 'selected'; ?>>Male</option>
+                    <option value="Female" <?php if ($sex == 'Female') echo 'selected'; ?>>Female</option>
+                    <option value="Other" <?php if ($sex == 'Other') echo 'selected'; ?>>Other</option>
+                </select>
+            </div>
 
-        <label for="sex">Sex:</label>
-        <select id="sex" name="sex">
-            <option value="Male" <?php if ($sex == 'Male') echo 'selected'; ?>>Male</option>
-            <option value="Female" <?php if ($sex == 'Female') echo 'selected'; ?>>Female</option>
-            <option value="Other" <?php if ($sex == 'Other') echo 'selected'; ?>>Other</option>
-        </select><br>
+            <div class="mb-3">
+                <label for="age" class="form-label">Age:</label>
+                <input type="number" id="age" name="age" class="form-control" value="<?php echo htmlspecialchars($age); ?>" required>
+            </div>
 
+            <div class="mb-3">
+                <label for="marathon_best_record" class="form-label">Marathon Best Record:</label>
+                <input type="text" id="marathon_best_record" name="marathon_best_record" class="form-control" value="<?php echo htmlspecialchars($marathon_best_record); ?>">
+            </div>
 
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" value="<?php echo $age; ?>"><br>
+            <div class="mb-3">
+                <label for="passport_no" class="form-label">Passport No:</label>
+                <input type="text" id="passport_no" name="passport_no" class="form-control" value="<?php echo htmlspecialchars($passport_no); ?>">
+            </div>
 
-        <label for="marathon_best_record">Marathon Best Record:</label>
-        <input type="text" id="marathon_best_record" name="marathon_best_record" value="<?php echo $marathon_best_record; ?>"><br>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address:</label>
+                <input type="text" id="address" name="address" class="form-control" value="<?php echo htmlspecialchars($address); ?>" required>
+            </div>
 
-        <label for="passport_no">Passport No:</label>
-        <input type="text" id="passport_no" name="passport_no" value="<?php echo $passport_no; ?>"><br>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>" required>
+            </div>
 
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" value="<?php echo $address; ?>"><br>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone:</label>
+                <input type="tel" id="phone" name="phone" class="form-control" value="<?php echo htmlspecialchars($phone); ?>" required>
+            </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?php echo $email; ?>"><br>
+            <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+        </form>
+    </div>
 
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" value="<?php echo $phone; ?>"><br>
-
-
-        <!-- Thêm các trường thông tin khác từ bảng Participant -->
-
-        <input type="submit" value="Save Changes">
-    </form>
 </body>
 </html>

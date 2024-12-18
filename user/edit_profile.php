@@ -69,7 +69,7 @@ if ($result && $result->num_rows > 0) {
                 <div class="card mb-4 mb-xl-0">
                     <div class="card-header">Profile Picture</div>
                     <div class="card-body text-center">
-                        <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                        <img class="img-account-profile rounded-circle mb-2" width=300px height= 300px src="assets/img/logo-nav.png" alt="">
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@ if ($result && $result->num_rows > 0) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="sex" class="form-label">Sex:</label>
+                                <label for="sex" class="form-label">Gender:</label>
                                 <select id="sex" name="sex" class="form-select">
                                     <option value="Male" <?php if ($sex == 'Male') echo 'selected'; ?>>Male</option>
                                     <option value="Female" <?php if ($sex == 'Female') echo 'selected'; ?>>Female</option>

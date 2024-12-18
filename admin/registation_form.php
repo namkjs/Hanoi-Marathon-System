@@ -16,27 +16,35 @@ session_start();
 
         <h2>Competition Registration Form</h2>
 
-        <form action="register_competition.php" method="post" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <label for="competition_id" class="form-label">Competition ID:</label>
-                <input type="text" class="form-control" id="competition_id" name="competition_id" required>
-                <div class="invalid-feedback">Please enter a valid competition ID.</div>
-            </div>
+        <form action="register_competition.php" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="competition_id" class="form-label">Competition ID:</label>
+        <input type="text" class="form-control" id="competition_id" name="competition_id" required>
+        <div class="invalid-feedback">Please enter a valid competition ID.</div>
+    </div>
 
-            <div class="mb-3">
-                <label for="competition_name" class="form-label">Competition Name:</label>
-                <input type="text" class="form-control" id="competition_name" name="competition_name" required>
-                <div class="invalid-feedback">Please enter a valid competition name.</div>
-            </div>
+    <div class="mb-3">
+        <label for="competition_name" class="form-label">Competition Name:</label>
+        <input type="text" class="form-control" id="competition_name" name="competition_name" required>
+        <div class="invalid-feedback">Please enter a valid competition name.</div>
+    </div>
 
-            <div class="mb-3">
-                <label for="time_of_event" class="form-label">Time of Event:</label>
-                <input type="datetime-local" class="form-control" id="time_of_event" name="time_of_event" required>
-                <div class="invalid-feedback">Please select a valid time of event.</div>
-            </div>
+    <div class="mb-3">
+        <label for="time_of_event" class="form-label">Time of Event:</label>
+        <input type="datetime-local" class="form-control" id="time_of_event" name="time_of_event" required>
+        <div class="invalid-feedback">Please select a valid time of event.</div>
+    </div>
 
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+    <!-- New Image Upload Field -->
+    <div class="mb-3">
+        <label for="image" class="form-label">Upload Competition Image:</label>
+        <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+        <div class="invalid-feedback">Please upload a valid image.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
 
         <div class="container mt-4">
             <?php 

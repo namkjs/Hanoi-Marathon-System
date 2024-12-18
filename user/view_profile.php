@@ -126,7 +126,7 @@ if ($result && $result->num_rows > 0) {
                     <div class="row g-0">
                         <!-- Left Section -->
                         <div class="col-md-4 gradient-custom d-flex flex-column align-items-center justify-content-center">
-                            <img src="./assets/img/avatar.png" alt="Avatar" />
+                            <img src="./assets/img/logo-nav.png" alt="Avatar" />
                             <h4 class="mb-0"><?php echo $name; ?></h4>
                             <p class="mb-4"><?php echo $nationality; ?></p>
                             <i class="fas fa-edit fa-lg"></i>
@@ -170,6 +170,10 @@ if ($result && $result->num_rows > 0) {
                                     <div class="col-6">
                                         <h6>Address</h6>
                                         <p><?php echo $address; ?></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6>Nationality</h6>
+                                        <p><?php echo $nationality; ?></p>
                                     </div>
                                 </div>
 

@@ -63,7 +63,7 @@ if ($result && $result->num_rows > 0) {
     </style>
 </head>
 <body>
-<?php include('../includes/loggedin.php'); ?>
+<?php include('../includes/loggedin_admin.php'); ?>
 
 <section class="vh-100" style="background-color: #f4f5f7;">
   <div class="container py-5 h-100">
